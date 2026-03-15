@@ -66,10 +66,10 @@ data "aws_ssm_parameter" "redis_sg_id" {
   name="/${var.project}/${var.environment}/redis_sg_id"
 }
 
-#mysq
-data "aws_ssm_parameter" "mysq_sg_id" {
+#mysql
+data "aws_ssm_parameter" "mysql_sg_id" {
 
-  name="/${var.project}/${var.environment}/mysq_sg_id"
+  name="/${var.project}/${var.environment}/mysql_sg_id"
 }
 
 #rabbitmq
