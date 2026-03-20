@@ -6,7 +6,7 @@ resource "aws_instance" "bastion" {
   iam_instance_profile = aws_iam_instance_profile.bastion.name
 
    user_data = file("bastion.sh")
-
+/* 
   root_block_device {
     volume_size = 50             # Customize volume size to 50 GB
     volume_type = "gp3"          # Change volume type
@@ -24,7 +24,7 @@ resource "aws_instance" "bastion" {
     }
   )
 }
-
+ */
 #IAM role
 resource "aws_iam_role" "bastion" {
   name = "roboshop_bastion"
