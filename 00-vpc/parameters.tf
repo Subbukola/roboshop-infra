@@ -7,19 +7,19 @@ resource "aws_ssm_parameter" "vpc_id" {
 
 #subets ID
 
-resource "aws_ssm_parameter" "public_subnet__ids" {
+resource "aws_ssm_parameter" "public_subnet_ids" {
   name  = "/${var.project}/${var.environment}/public_subnet_ids"
   type  = "StringList"
   value = join(",",module.vpc_call.public_subnet_ids)
 }
 
-resource "aws_ssm_parameter" "private_subnet__ids" {
+resource "aws_ssm_parameter" "private_subnet_ids" {
   name  = "/${var.project}/${var.environment}/private_subnet_ids"
   type  = "StringList"
   value = join(",",module.vpc_call.private_subnet_ids)
 }
 
-resource "aws_ssm_parameter" "database_subnet__ids" {
+resource "aws_ssm_parameter" "database_subnet_ids" {
   name  = "/${var.project}/${var.environment}/database_subnet_ids"
   type  = "StringList"
   value = join(",",module.vpc_call.database_subnet_ids)

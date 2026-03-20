@@ -15,7 +15,7 @@ resource "aws_instance" "mongodb" {
 }
 
 
-#used to connect to instance
+/* #used to connect to instance
 resource "terraform_data" "bootstrap" {
   triggers_replace = [
     aws_instance.mongodb.id
@@ -40,4 +40,4 @@ resource "terraform_data" "bootstrap" {
 
     }
   }
-}
+} */
