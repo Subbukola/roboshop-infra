@@ -7,7 +7,7 @@ variable "environment" {
     default = "DEV"
   
 }
-variable "bastion_tags" {
+variable "mongodb_tags" {
     default = {}
   
 }
