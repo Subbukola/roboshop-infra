@@ -5,6 +5,15 @@ resource "aws_instance" "bastion" {
   subnet_id = local.public_subnet_id
   iam_instance_profile = aws_iam_instance_profile.bastion.name
 
+  root_block_device {
+    volume_size = 50             # Customize volume size to 50 GB
+    volume_type = "gp3"          # Change volume type
+    delete_on_termination = true # Default is true, but shown for clarity
+    tags = {
+      Name = "bastion-volume"
+    }
+  }
+
   tags = merge(
     local.common_tags,
     var.bastion_tags,
