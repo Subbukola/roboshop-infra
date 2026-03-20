@@ -23,8 +23,8 @@ resource "aws_instance" "bastion" {
         Name="${var.project}-${var.environment}-bastion"
     }
   )
-}
  */
+}
 #IAM role
 resource "aws_iam_role" "bastion" {
   name = "roboshop_bastion"
