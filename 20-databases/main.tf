@@ -147,31 +147,31 @@ resource "terraform_data" "mysql_bootstrap" {
 
 #rabitmq
 
-resource "aws_instance" "rabitmq" {
+resource "aws_instance" "rabbitmq" {
   ami           = data.aws_ami.joindevops.id
   instance_type = "t3.micro"
-  vpc_security_group_ids=[local.rabitmq_sg_id]
+  vpc_security_group_ids=[local.rabbitmq_sg_id]
   subnet_id = local.database_subnet_id
   #iam_instance_profile = aws_iam_instance_profile.bastion.name
 
   tags = merge(
     local.common_tags,
-    var.rabitmq_tags,
+    var.rabbitmq_tags,
     {
-        Name="${var.project}-${var.environment}-rabitmq"
+        Name="${var.project}-${var.environment}-rabbitmq"
     }
   )
 }
 
 
  #used to connect to instance
-resource "terraform_data" "rabitmq_bootstrap" {
+resource "terraform_data" "rabbitmq_bootstrap" {
   triggers_replace = [
-    aws_instance.rabitmq.id
+    aws_instance.rabbitmq.id
   ]
   connection {
     type        = "ssh"
-    host        = aws_instance.rabitmq.private_ip
+    host        = aws_instance.rabbitmq.private_ip
     user        = "ec2-user"
     password  = "DevOps321"
     
@@ -185,7 +185,7 @@ resource "terraform_data" "rabitmq_bootstrap" {
   provisioner "remote-exec" {
     inline= [
       "chmod +x /tmp/bootstap.sh",
-      "sudo sh /tmp/bootstap.sh rabitmq ${var.environment}"
+      "sudo sh /tmp/bootstap.sh rabbitmq ${var.environment}"
     
     ]
     

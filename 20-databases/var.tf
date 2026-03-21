@@ -23,7 +23,7 @@ variable "mysql_tags" {
   
 }
 
-variable "rabitmq_tags" {
+variable "rabbitmq_tags" {
 
     default = {}
   
