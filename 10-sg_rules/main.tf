@@ -19,3 +19,39 @@ resource "aws_security_group_rule" "bastion_mongodb" {
   source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
   security_group_id = data.aws_ssm_parameter.mongodb_sg_id.value
 }
+
+
+#bastinint to redis
+resource "aws_security_group_rule" "bastion_redis" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.redis_sg_id.value
+}
+
+
+#bastinint to mysql
+resource "aws_security_group_rule" "bastion_mysql" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.mysql_sg_id.value
+}
+
+
+#bastinint to mongodb
+resource "aws_security_group_rule" "bastion_rabbitmq" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.rabbitmq_sg_id.value
+}
