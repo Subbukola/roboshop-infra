@@ -56,9 +56,9 @@ resource "aws_security_group_rule" "bastion_rabbitmq" {
   security_group_id = data.aws_ssm_parameter.rabbitmq_sg_id.value
 }
 
-#------------------BACKEND(catalogue, user, car, shipping, payment)------------------------------------
+#------------------BACKEND(catalogue, user, cart, shipping, payment)------------------------------------
 #bastinint to catalogue
-/* resource "aws_security_group_rule" "bastion_catalogue" {
+ resource "aws_security_group_rule" "bastion_catalogue" {
   type              = "ingress"
   from_port         = 22
   to_port           = 22
@@ -66,4 +66,86 @@ resource "aws_security_group_rule" "bastion_rabbitmq" {
   #cidr_blocks       = "[0.0.0.0/0]"
   source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
   security_group_id = data.aws_ssm_parameter.catalogue_sg_id.value
-} */
+} 
+
+#bastinint to user
+ resource "aws_security_group_rule" "bastion_user" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.user_sg_id.value
+} 
+
+#bastinint to cart
+ resource "aws_security_group_rule" "bastion_cart" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.cart_sg_id.value
+} 
+
+#bastinint to shipping
+ resource "aws_security_group_rule" "bastion_shipping" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.shipping_sg_id.value
+} 
+
+#bastinint to payment
+ resource "aws_security_group_rule" "bastion_payment" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.payment_sg_id.value
+} 
+
+  
+ #bastinint to payment
+ resource "aws_security_group_rule" "bastion_Backend_alb" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.backend_alb_sg_id.value
+} 
+
+
+ #bastinint to frontend
+ resource "aws_security_group_rule" "bastion_frontend" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.frontend_sg_id.value
+} 
+
+   #bastinint to frontend_alb
+ resource "aws_security_group_rule" "bastion_frontend_alb" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  #cidr_blocks       = "[0.0.0.0/0]"
+  source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
+  security_group_id = data.aws_ssm_parameter.frontend_alb_sg_id.value
+} 
+      
+    
+        
