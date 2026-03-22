@@ -19,5 +19,7 @@ locals {
     ([for name in ["${var.project}","${var.environment}","Mysql"]: title(name)])
   ) 
 
+  domain_zone_id= var.zone_id
+
 
 }
