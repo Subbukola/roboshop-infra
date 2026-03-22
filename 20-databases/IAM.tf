@@ -27,22 +27,22 @@ resource "aws_iam_role" "mysql" {
 }
 
 
-/* #creating policy for myswl
+ #creating policy for myswl
 resource "aws_iam_policy" "s3_read_policy" {
   name        = local.mysql_policy_name
   description = "Grants read and get permissionf for ssm parameter store"
-  policy      = data.aws_iam_policy_document.s3_read_only_access.json #
+  policy      =file("mysql-iam-policy.json")
 }
 
 #  Attach the policy to the role 
 resource "aws_iam_role_policy_attachment" "mysql" {
   role       = aws_iam_role.mysql.name
-  #policy_arn = aws_iam_policy.example_policy.arn
-  policy_arn = var.policy
+  policy_arn = aws_iam_policy.s3_read_policy.arn
+  
 }
 
 # Create the instance profile
-resource "aws_iam_instance_profile" "bastion" {
-  name = "${var.project}-${var.environment}-bastion"
-  role = aws_iam_role.bastion.name
-} */
+resource "aws_iam_instance_profile" "mysql" {
+  name = "${var.project}-${var.environment}-mysql"
+  role = aws_iam_role.mysql.name
+} 
