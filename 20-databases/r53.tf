@@ -19,7 +19,7 @@ resource "aws_route53_record" "redis" {
 
 #mysql
 resource "aws_route53_record" "mysql" {
-  zone_id = local.domain_zone_id.id
+  zone_id = local.domain_zone_id.value
   name    = "mysql-${var.environment}-${var.domain_name}"
   type    = "A"
   ttl     = 300
@@ -28,7 +28,7 @@ resource "aws_route53_record" "mysql" {
 
 #rabbitmq
 resource "aws_route53_record" "rabbitmq" {
-  zone_id = local.domain_zone_id.id
+  zone_id = local.domain_zone_id.value
   name    = "rabbitmq-${var.environment}-${var.domain_name}"
   type    = "A"
   ttl     = 300
