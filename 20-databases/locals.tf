@@ -11,4 +11,13 @@ locals {
     terraform= "true"
   }
 
+  mysql_role_name= join("-",
+    ([for name in ["${var.var.project}","${var.environment}","Mysql"]: title(name)])
+  ) 
+
+   mysql_policy_name= join("",
+    ([for name in ["${var.var.project}","${var.environment}","Mysql"]: title(name)])
+  ) 
+
+
 }

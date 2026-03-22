@@ -27,7 +27,7 @@ resource "aws_instance" "bastion" {
 }
 #IAM role
 resource "aws_iam_role" "bastion" {
-  name = "roboshop_bastion"
+  name = "RoboshopDevBastion"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
