@@ -60,8 +60,8 @@ resource "aws_security_group_rule" "bastion_rabbitmq" {
 #bastinint to catalogue
  resource "aws_security_group_rule" "bastion_catalogue" {
   type              = "ingress"
-  from_port         = 22
-  to_port           = 22
+  from_port         = 80
+  to_port           = 80
   protocol          = "tcp"
   #cidr_blocks       = "[0.0.0.0/0]"
   source_security_group_id=data.aws_ssm_parameter.bastion_sg_id.value
